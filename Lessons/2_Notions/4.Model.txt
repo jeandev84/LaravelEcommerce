@@ -1,0 +1,78 @@
+Creer un model et creer une migration par rapport au modele
+$ php artisan make:model Product --migration
+Model created successfully.
+Created Migration: 2020_03_14_185143_create_product_table
+
+==================================================================
+Example:
+$ php artisan make:model Data --migration
+Model created successfully.
+Created Migration: 2020_03_14_185142_create_data_table
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Data extends Model
+{
+    //
+}
+
+ <?php
+
+ use Illuminate\Support\Facades\Schema;
+ use Illuminate\Database\Schema\Blueprint;
+ use Illuminate\Database\Migrations\Migration;
+
+ class CreateDataTable extends Migration
+ {
+     /**
+      * Run the migrations.
+      *
+      * @return void
+      */
+     public function up()
+     {
+         Schema::create('data', function (Blueprint $table) {
+             $table->increments('id');
+             $table->string('title');
+             $table->string('slug')->unique();
+             $table->text('description')->nullable(); // le champ peut etre vide
+             $table->integer('page'); // page courante
+             $table->timestamps();
+         });
+     }
+
+     /**
+      * Reverse the migrations.
+      *
+      * @return void
+      */
+     public function down()
+     {
+         Schema::dropIfExists('data');
+     }
+ }
+
+========================================================
+Migrer toutes les tables vers la base de donnees
+$ php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2020_03_14_185142_create_data_table
+Migrated:  2020_03_14_185142_create_data_table
+
+==========================================================
+Annuler toutes les migrations et revenir a zero
+$ php artisan migrate:rollback
+Rolling back: 2020_03_14_185142_create_data_table
+Rolled back:  2020_03_14_185142_create_data_table
+Rolling back: 2014_10_12_100000_create_password_resets_table
+Rolled back:  2014_10_12_100000_create_password_resets_table
+Rolling back: 2014_10_12_000000_create_users_table
+Rolled back:  2014_10_12_000000_create_users_table

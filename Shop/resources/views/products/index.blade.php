@@ -2,5 +2,5 @@
 @extends('layouts/master')
 
 @section('content')
-    <h2>Ma page d'acceuil</h2>
+    <h2>Ma Page product</h2>
 @stop
