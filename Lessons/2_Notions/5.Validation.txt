@@ -1,0 +1,3 @@
+Create own request for validation data
+
+$ php artisan make:request DataRequest

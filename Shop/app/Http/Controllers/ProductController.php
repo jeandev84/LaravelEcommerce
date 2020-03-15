@@ -1,10 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
+/**
+ * Class ProductController
+ * @package App\Http\Controllers
+*/
 class ProductController extends Controller
 {
     /**
@@ -24,7 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products/form');
     }
 
     /**
@@ -35,7 +39,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $product = new Data(); /*  dd($request); */
+
+         /*
+         $validatedData = $request->validate([
+            'title' => 'required|max:5',
+            'slug' => 'required|max:5'
+         ]);
+         */
+
+         /* verify si les regles de validation dans App\Http\Requests\DataRequest */
+         $validated = $request->validated();
+
+
+         $product->title = $request->title;
+         $product->slug = $request->slug;
+         $product->description = $request->description;
+         $product->page = $request->page;
+
+         $product->save();
     }
 
     /**

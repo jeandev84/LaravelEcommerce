@@ -19,7 +19,7 @@ class CreateDataTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable(); // le champ peut etre vide
             $table->integer('page'); // page courante
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 
